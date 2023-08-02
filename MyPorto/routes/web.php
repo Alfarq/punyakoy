@@ -18,10 +18,10 @@ use App\Http\Controllers\PagesController;
 #});
 
 
-Route::get('/', [PagesController::class, 'home']);
-
-
+Route::get('/', [PagesController::class, 'index']);
+Route::get('/home', [PagesController::class, 'home']);
 Route::get('/about', [PagesController::class, 'about']);
+Route::get('/tes', [PagesController::class, 'tes']);
 
 Route::prefix('/porto')->group(function(){
     // List dari portofolio

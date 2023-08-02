@@ -1,5 +1,6 @@
 (function ($) {
     "use strict";
+    AOS.init();
 
     // Spinner
     var spinner = function () {
@@ -11,14 +12,19 @@
     };
     spinner();
     
-    
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("#tes").load("about");
+        });
+    });
+
     // Initiate the wowjs
     new WOW().init();
 
 
     // Navbar on scrolling
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
+        if ($(this).scrollTop() > 10) {
             $('.navbar').fadeIn('slow').css('display', 'flex');
         } else {
             $('.navbar').fadeOut('slow').css('display', 'none');
@@ -28,12 +34,11 @@
 
     // Smooth scrolling on the navbar links
     $(".navbar-nav a").on('click', function (event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            
-            $('html, body').animate({
-                scrollTop: $(this.hash).offset().top - 45
-            }, 1500, 'easeInOutExpo');
+        if ($(this).attr('href') !== "") {
+            event.preventDefault(); 
+
+            $("#content").load($(this).attr('href'));
+
             
             if ($(this).parents('.navbar-nav').length) {
                 $('.navbar-nav .active').removeClass('active');
